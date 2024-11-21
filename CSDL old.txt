@@ -1,0 +1,216 @@
+create database QuanLyDeAn_DamVietTrong;
+USE QuanLyDeAn_DamVietTrong;
+
+CREATE TABLE NHANVIEN
+	(
+	 MANV		varchar(9) PRIMARY KEY
+	 ,HONV		nvarchar(15)
+	 ,TENLOT	nvarchar(30)
+	 ,TENNV		nvarchar(30)
+	 ,NGSINH	smalldatetime
+	 ,DCHI		nvarchar(150)
+	 ,PHAI		nvarchar(3)
+	 ,LUONG		numeric(18,0)
+	 ,MA_NQL	varchar(9)
+	 ,PHG		varchar(2)
+	 );
+
+CREATE TABLE DEAN
+(
+	MADA	varchar(2)	PRIMARY KEY
+	,TENDA	nvarchar(50)
+	,DDIEM_DA	varchar(20)
+	,PHONG	varchar(2)
+	);
+
+CREATE TABLE PHONGBAN
+(
+	MAPHG	varchar(2)	PRIMARY KEY
+	,TENPHG	nvarchar(20)
+	,TRPHG	varchar(9)
+	,NG_NHANCHUC	smalldatetime
+	,FOREIGN KEY (TRPHG) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE DIADIEM_PHG
+(
+	MAPHG	varchar(2)
+	,DIADIEM	varchar(20)
+	,PRIMARY KEY(MAPHG, DIADIEM)
+	,FOREIGN KEY (MAPHG) REFERENCES PHONGBAN(MAPHG)
+	);
+
+CREATE TABLE THANNHAN
+(
+	MA_NVIEN	varchar(9)
+	,TENTN		varchar(20)
+	,NGSINH		smalldatetime
+	,PHAI		varchar(3)
+	,QUANHE		varchar(25)
+	,PRIMARY KEY(MA_NVIEN, TENTN)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE PHANCONG
+(
+	MA_NVIEN	varchar(9)
+	,SODA		varchar(2)
+	,THOIGIAN	numeric(18,0)
+	,PRIMARY KEY(MA_NVIEN, SODA)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	,FOREIGN KEY (SODA) REFERENCES DEAN(MADA)
+	);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(MA_NQL) REFERENCES NHANVIEN(MANV);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(PHG) REFERENCES PHONGBAN(MAPHG);
+
+	ALTER TABLE DIADIEM_PHG NOCHECK CONSTRAINT ALL
+
+INSERT INTO NHANVIEN(MANV,HONV,TENLOT,TENNV,NGSINH,DCHI,PHAI,LUONG,MA_NQL,PHG)
+VALUES ('01',N'Phùng',N'Nhất',N'Bình','2003-07-25',N'Phú Yên','Nam','10000000','00','P1'),
+	  ('02',N'Đỗ',N'Lương',N'Tài','2001-05-10',N'Nha Trang','Nam','20000000','00','P1'),
+	  ('03',N'Đan',N'Bảo',N'Trúc','2000-11-13',N'Nha Trang',N'Nữ','10000000','00',N'P1');
+
+INSERT INTO NHANVIEN(MANV,HONV,TENLOT,TENNV,NGSINH,DCHI,PHAI,LUONG,MA_NQL,PHG)
+VALUES ('04',N'Mục',N'Tuấn',N'Châu','2002-07-21',N'Phú Yên','Nam','10000000','0A','P2'),
+	   ('05',N'Tuấn',N'Thăng',N'Long','2000-03-15',N'Hà Nội','Nam','30000000','0A','P2'),
+	   ('06',N'Châu',N'Giáng',N'Tiên','2000-04-17',N'Hải Phòng',N'Nữ','20000000','0A','P2'),
+	   ('07',N'Điêu',N'Kiều',N'Diễm','1990-01-11',N'Khánh Hòa',N'Nữ','50000000','0B','P3'),
+	   ('08',N'Ninh',N'Tùng',N'Anh','2000-04-22',N'Phú Yên','Nam','20000000','0B','P3'),
+	   ('09',N'Ung',N'Yên',N'Bình','2005-11-25',N'Phú Yên','Nam','20000000','0B','P3'),
+	   ('10',N'Ấu',N'Minh',N'Dân','1997-07-01',N'Hồ Chí Minh','Nam','20000000','0B','P3');
+	   
+
+INSERT INTO PHONGBAN(MAPHG,TENPHG,TRPHG,NG_NHANCHUC)
+VALUES ('4P',N'Nhân sự','T4','2010-04-15');
+	   
+
+INSERT INTO DEAN(MADA,TENDA,DDIEM_DA,PHONG)
+VALUES ('23','KT',N'Hồ Chí Minh','8');
+
+INSERT INTO DIADIEM_PHG(MAPHG,DIADIEM)
+VALUES ('4P',N'Tầng 4');
+
+INSERT INTO THANNHAN(MA_NVIEN,TENTN,NGSINH,PHAI,QUANHE)
+VALUES	('04',N'Tùng','1980-09-12','Nam','Anh trai'),
+	    ('05',N'Minh','1990-02-20',N'Nam','Ba'),
+		('06',N'Hoa','2003-09-03',N'Nữ',N'Em gái'),
+		('07',N'Hiếu','2001-06-15',N'Nam',N'Anh trai'),
+		('08',N'Huy','2003-06-12',N'Nam',N'Em trai'),
+		('09',N'Như','2000-12-25',N'Nữ',N'Em gái'),
+		('10',N'My','1990-04-03',N'Nữ',N'Chị gái');
+
+INSERT INTO PHANCONG(MA_NVIEN,SODA,THOIGIAN)
+VALUES	('04','D1','1300'),
+	    ('05','D2','0960'),
+		('06','D2','1350'),
+		('07','D3','0730'),
+	    ('08','D3','0730'),
+		('09','D3','0730'),
+		('10','D1','1300');
+
+update THANNHAN
+set TENTN = 'Sang'
+where MA_NVIEN = 07
+
+select * from DIADIEM_PHG;
+/*Bai so  1*/
+Select * 
+from NHANVIEN
+where PHG = '5';
+/*Bai so  2*/
+select *
+from NHANVIEN
+where LUONG > 25000;
+/*Bai so  3*/
+select *
+from NHANVIEN
+where (LUONG > 65000 and PHG = 2) or (LUONG >70000 and PHG = 6);
+/*Bai so  4*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where DCHI like N'Hồ Chí Minh';
+/*Bai so  5*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where TENNV like N'N%';
+/*Bai so  6*/
+select NGSINH, DCHI
+from NHANVIEN
+where HONV + ' ' + TENLOT + ' ' + TENNV like 'Lê Minh Tính';
+/*Bai so  7*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where year(NGSINH) between 1955 and 1975;
+/*Bai so  8*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], YEAR(NGSINH) as N'Năm'
+from NHANVIEN;
+/*Bai so  9*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], DATEDIFF(YEAR, NGSINH, GETDATE()) as N'Tuổi'
+from NHANVIEN;
+/*Bai so  10*/
+select TENPHG, DIADIEM
+from PHONGBAN join DIADIEM_PHG
+	on PHONGBAN.MAPHG = DIADIEM_PHG.MAPHG;
+/*Bai so  11*/
+select TENNV as N'Tên Trưởng Phòng', TENPHG as N'Tên Phòng Ban'
+from NHANVIEN join PHONGBAN on NHANVIEN.MANV = PHONGBAN.TRPHG;
+/*Bai so  12*/
+select TENNV, DCHI
+from NHANVIEN join PHONGBAN on NHANVIEN.PHG = PHONGBAN.MAPHG
+where TENPHG = N'Kỹ thuật';
+/*Bai so  13*/
+select TENDA, TENPHG, HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], NG_NHANCHUC
+from (DEAN join PHONGBAN on DEAN.PHONG = PHONGBAN.MAPHG) inner join NHANVIEN on PHONGBAN.TRPHG = NHANVIEN.MANV
+/*Bai so  14*/
+select TENNV, TENTN
+from NHANVIEN join THANNHAN on NHANVIEN.MANV = THANNHAN.MA_NVIEN
+where NHANVIEN.PHAI = N'Nữ'
+/*Bai so  15*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv', ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí'
+from NHANVIEN nv, NHANVIEN ql
+where nv.MANV = ql.MA_NQL
+/*Bai so 16*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv',ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí',
+tp.HONV+ ' ' +tp.TENLOT+ ' ' +tp.TENNV as 'Họ Và Tên Trưởng Phòng'
+from NHANVIEN nv,NHANVIEN ql,NHANVIEN tp , PHONGBAN pb
+where nv.MA_NQL=ql.MANV and tp.MANV= pb.TRPHG and pb.MAPHG=nv.PHG
+/*Bai so 17*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv', ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí'
+from NHANVIEN nv, NHANVIEN ql, DEAN da
+where nv.MA_NQL = ql.MANV and da.PHONG = nv.PHG and nv.PHG = 5 and da.TENDA like N'Xây dựng nhà máy chếbiến thủy sản';
+/*Bai so 42*/
+select tp.HONV+ ' ' +tp.TENLOT+ ' ' +tp.TENNV as 'Họ Và Tên tp', pb.TENPHG
+from NHANVIEN tp join PHONGBAN pb on tp.MANV = pb.TRPHG
+where pb.MAPHG = (
+	select top 1 p.MAPHG
+	from PHONGBAN p join NHANVIEN nv on p.MAPHG = nv.PHG
+	group by p.MAPHG
+	order by count(nv.MANV)desc);
+
+select HONV,TENNV,count(*)
+	from NHANVIEN,THANNHAN
+	where MANV= MA_NVIEN
+	group by HONV,TENNV
+
+begin
+	declare @contro cursor;
+	set @contro = cursor for
+		select HONV + ' ' + TENLOT + ' ' + TENNV
+		from NHANVIEN
+		where DCHI like N'Hồ Chí Minh';
+		open @contro;
+		declare @hoten nvarchar(50);
+		declare @i int = 0;
+		fetch next from @contro into @hoten;
+		while(@@FETCH_STATUS = 0)
+			begin
+				set @i = @i + 1;
+				print convert(varchar(4), @i) + '.' + @hoten;
+			end;
+		close @contro;
+		deallocate @contro;
+end;

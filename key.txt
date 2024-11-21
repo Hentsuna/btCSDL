@@ -1,0 +1,609 @@
+NHANVIEN: MANV la primary(varchar 9)
+		MA_NQL fkey MANV-NHANVIEN(varchar 9)
+		PHG fkey MAPHG-PHONGBAN(varchar 2)
+DEAN: MADA la primary(varchar 2)
+PHONGBAN: MAPHG la primary(varchar 2)
+		TRPHG fkey MANV-NHANVIEN(varchar 9)
+PHANCONG: MA_NVIEN la primary(varchar 9)
+		SODA la primary(varchar 2)
+		MA_NVIEN fkey MANV-NHANVIEN(varchar 9)
+		SODA fkey MADA-DEAN(Varchar 2)
+THANNHAN: MA_NVIEN la primary(varchar 9)
+		TENTN la primary(varchar 20)
+		MA_NVIEN fkey MANV-NHANVIEN(varchar 9)
+DIADIEM_PHG: MAPHG la primary(varchar 2)
+		DIADIEM la primary(varchar 20)
+		MAPHG fkey MAPHG-PHONGBAN(varchar 2)
+------------------------------------------------------------------------
+-NHANVIEN(MANV,HONV,TENLOT,TENNV,NGSINH,DCHI,PHAI,LUONG,MA_NQL,PHG)
+('01',N'Phùng',N'Nhất',N'Bình','1980-07-25',N'Nha Trang','Nam','500000000','01','P1'),
+('02',N'Đỗ',N'Lương',N'Tài','2001-05-10',N'Nha Trang','Nam','100000000','01','P1'),
+('03',N'Đan',N'Bảo',N'Trúc','2000-11-13',N'Nha Trang',N'Nữ','50000000','01',N'P1'),
+('04',N'Mục',N'Tuấn',N'Châu','2002-07-21',N'Phú Yên','Nam','100000000','01','P2'),
+('05',N'Tuấn',N'Thăng',N'Long','2000-03-15',N'Phú Yên','Nam','50000000','01','P2'),
+('06',N'Châu',N'Giáng',N'Tiên','2000-04-17',N'Phú Yên',N'Nữ','50000000','01','P2'),
+('07',N'Điêu',N'Kiều',N'Diễm','1990-01-11',N'Nha Trang',N'Nữ','100000000','01','P3'),
+('08',N'Ninh',N'Tùng',N'Anh','2000-04-22',N'Nha Trang','Nam','50000000','01','P3'),
+('09',N'Ung',N'Yên',N'Bình','1995-11-25',N'Nha Trang','Nam','50000000','01','P3'),
+('10',N'Ấu',N'Minh',N'Dân','1982-07-01',N'Hồ Chí Minh','Nam','500000000','10','P4'),
+('11',N'Lương',N'Hoàng',N'Anh','1980-03-11',N'Hồ Chí Minh',N'Nữ','100000000','10','P4'),
+('12',N'Phan',N'Nguyệt',N'Ánh','2000-01-12',N'Hồ Chí Minh',N'Nữ','80000000','10','P4'),
+('13',N'Lê',N'Hữu',N'Đạt','2003-11-25',N'Hồ Chí Minh','Nam','100000000','10','P5'),
+('14',N'Võ',N'Huy',N'Hùng','1995-11-11',N'Hồ Chí Minh','Nam','80000000','10','P5'),
+('15',N'Mai',N'Hoàng',N'Khương','1990-03-22',N'Hồ Chí Minh','Nam','80000000','10','P5'),
+('16',N'Cao',N'Hoài',N'Nam','1992-01-11',N'Hà Nội','Nam','500000000','16','P6'),
+('17',N'Trần',N'Thanh',N'Thân','2000-10-11',N'Hà Nội',N'Nữ','100000000','16','P6'),
+('18',N'Bùi',N'Hữu',N'Thắng','2001-05-22',N'Hà Nội','Nam','20000000','16','P6'),
+('19',N'Nguyễn',N'Nhất',N'Tâm','1998-11-24',N'Hà Nội','Nam','100000000','16','P7'),
+('20',N'Huỳnh',N'Tấn',N'Đạt','1999-03-02',N'Hà Nội','Nam','20000000','16','P7'),
+('21',N'Nguyễn',N'Hoàng',N'Việt','2003-02-15',N'Hà Nội','Nam','20000000','16','P7');
+
+--------------------------------------------------------------------------------------------------
+-DEAN(MADA,TENDA,DDIEM_DA,PHONG)
+('A1',N'Xây chung cư',N'Nha Trang','P1'),
+('A2',N'Thiết kế chung cư',N'Nha Trang','P2'),
+('A3',N'Thu mua vật liệu xây',N'Nha Trang','P3'),
+('A4',N'Quảng cáo chung cư',N'Hồ Chí Minh','P4'),
+('A5',N'Sản xuất vật liệu xây',N'Hồ Chí Minh','P5'),
+('A6',N'Tuyển bảo an xây dựng',N'Hà Nội','P6'),
+('A7',N'Tuyển nhân công xây dựng',N'Hà Nội','P7'),
+('A8',N'Tuyển nhân công đọc',N'Hà Nội','P8'),
+('A9',N'Tuyển nhân công đào móng',N'Hà Nội','P9'),
+('B1',N'Tuyển nhân công trộn',N'Hà Nội','PA'),
+('B2',N'Tuyển nhân công hàn',N'Hà Nội','PB'),
+('B3',N'Tuyển nhân công sơn',N'Hà Nội','PC'),
+('B4',N'Tuyển nhân công đắp',N'Hà Nội','PD'),
+('B5',N'Tuyển nhân công động',N'Hà Nội','PE'),
+('B6',N'Khảo sát',N'Hà Nội','PF'),
+('B7',N'Thuyết phục',N'Hà Nội','PG'),
+('B8',N'Tuyển nhân viên căntin',N'Hà Nội','PH'),
+('B9',N'Coca',N'Hà Nội','PI'),
+('C1',N'Pepsi',N'Hà Nội','PK'),
+('C2',N'Mirinda',N'Hà Nội','PL');
+------------------------------------------------------------------------------------------------
+-PHONGBAN(MAPHG, TENPHG, TRGPHG, NG_NHANCHUC)
+('P1',N'Xây dựng','02','2020-04-15'),
+('P2',N'Thiết kế','04','2020-03-25'),
+('P3',N'Thu mua vật liệu','07','2020-11-23'),
+('P4',N'Tuyên truyền','11','2022-06-23'),
+('P5',N'Sản xuất','13','2022-06-23'),
+('P6',N'Bảo an','17','2019-10-11'),
+('P7',N'Nhân sự','19','2019-11-23'),
+('P8',N'Phòng 8','19','2019-11-23'),
+('P9',N'Phòng 9','19','2019-11-23'),
+('PA',N'Phòng 10','19','2019-11-23'),
+('PB',N'Phòng 11','19','2019-11-23'),
+('PC',N'Phòng 12','19','2019-11-23'),
+('PD',N'Phòng 13','19','2019-11-23'),
+('PE',N'Phòng 14','19','2019-11-23'),
+('PF',N'Phòng 15','19','2019-11-23'),
+('PG',N'Phòng 16','19','2019-11-23'),
+('PH',N'Phòng 17','19','2019-11-23'),
+('PI',N'Phòng 18','19','2019-11-23'),
+('PK',N'Phòng 19','19','2019-11-23'),
+('PL',N'Phòng 20','19','2019-11-23');
+
+-----------------------------------------------------------------------------------------------------
+-DIADIEM_PHG(MAPHG,DIADIEM)
+('P1',N'Nha Trang'),
+('P2',N'Phú Yên'),
+('P3',N'Nha Trang'),
+('P4',N'Hồ Chí Minh'),
+('P5',N'Hồ Chí Minh'),
+('P6',N'Hà Nội'),
+('P7',N'Hà Nội'),
+('P8',N'CS1, Hà Nội'),
+('P9',N'CS1, Hà Nội'),
+('PA',N'CS2, Hà Nội'),
+('PB',N'CS2, Hà Nội'),
+('PC',N'CS2, Hà Nội'),
+('PD',N'CS2, Hà Nội'),
+('PE',N'CS2, Hà Nội'),
+('PF',N'CS2, Hà Nội'),
+('PG',N'CS2, Hà Nội'),
+('PH',N'CS2, Hà Nội'),
+('PI',N'CS2, Hà Nội'),
+('PK',N'CS2, Hà Nội'),
+('PL',N'CS2, Hà Nội');
+
+----------------------------------------------------------------------------------------------------
+-THANNHAN(MA_NVIEN,TENTN,NGSINH,PHAI,QUANHE)
+('01',N'Linh','1980-03-22','Nam','Ba'),
+('01',N'Hoàn','1981-05-17',N'Nữ',N'Mẹ'),
+('02',N'Yến','1972-02-11',N'Nữ',N'Mẹ'),
+('03',N'Phú','1975-05-22',N'Nam',N'Ba'),
+('04',N'Tùng','1980-09-12','Nam','Ba'),
+('04',N'Hương','1977-08-10',N'Nữ','Mẹ'),
+('05',N'Minh','1990-02-20',N'Nam','Ba'),
+('06',N'Hoa','2003-09-03',N'Nữ',N'Em gái'),
+('07',N'Hiếu','2001-06-15',N'Nam',N'Anh trai'),
+('08',N'Huy','2003-06-12',N'Nam',N'Em trai'),
+('09',N'Như','2000-12-25',N'Nữ',N'Em gái'),
+('10',N'Mỹ','1972-09-07',N'Nữ',N'Mẹ'),
+('11',N'My','1990-04-03',N'Nữ',N'Chị gái'),
+('12',N'Hùng','1969-11-05',N'Nam',N'Ba'),
+('13',N'Nguyễn','1974-09-11',N'Nam',N'Ba'),
+('14',N'Bảo','1977-06-15',N'Nữ',N'Mẹ'),
+('15',N'Hải','1982-09-22',N'Nam',N'Ba'),
+('16',N'Hoan','1971-10-14',N'Nữ',N'Mẹ'),
+('17',N'Nga','1970-06-01',N'Nữ',N'Mẹ'),
+('18',N'Quốc','1968-04-03',N'Nam',N'Ba'),
+('19',N'Trường','1970-12-11',N'Nam',N'Ba'),
+('20',N'Thảo','1979-01-15',N'Nữ',N'Mẹ'),
+('21',N'Tâm','1975-05-11',N'Nữ',N'Mẹ');
+
+-------------------------------------------------------------------------------------------------------
+-PHANCONG(MA_NVIEN,SODA,THOIGIAN)
+('01','A1','2160'),
+('02','A1','2160'),
+('03','A1','2160'),
+('04','A2','50'),
+('05','A2','50'),
+('06','A2','50'),
+('07','A3','1000'),
+('08','A3','1000'),
+('09','A3','1000'),
+('10','A4','1900'),
+('11','A4','1900'),
+('12','A4','1900'),
+('13','A5','2200'),
+('14','A5','2200'),
+('15','A5','2200'),
+('16','A6','168'),
+('17','A6','168'),
+('18','A6','168'),
+('19','A7','100'),
+('20','A7','100'),
+('21','A7','10');
+
+
+--------------------------------------------------------------------------
+create database QuanLyDeAn_DamVietTrong;
+USE QuanLyDeAn_DamVietTrong;
+
+CREATE TABLE NHANVIEN
+	(
+	 MANV		varchar(9) PRIMARY KEY
+	 ,HONV		nvarchar(15)
+	 ,TENLOT	nvarchar(30)
+	 ,TENNV		nvarchar(30)
+	 ,NGSINH	smalldatetime
+	 ,DCHI		nvarchar(150)
+	 ,PHAI		nvarchar(3)
+	 ,LUONG		numeric(18,0)
+	 ,MA_NQL	varchar(9)
+	 ,PHG		varchar(2)
+	 );
+
+CREATE TABLE DEAN
+(
+	MADA	varchar(2)	PRIMARY KEY
+	,TENDA	nvarchar(50)
+	,DDIEM_DA	varchar(20)
+	,PHONG	varchar(2)
+	);
+
+CREATE TABLE PHONGBAN
+(
+	MAPHG	varchar(2)	PRIMARY KEY
+	,TENPHG	nvarchar(20)
+	,TRPHG	varchar(9)
+	,NG_NHANCHUC	smalldatetime
+	,FOREIGN KEY (TRPHG) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE DIADIEM_PHG
+(
+	MAPHG	varchar(2)
+	,DIADIEM	nvarchar(20)
+	,PRIMARY KEY(MAPHG, DIADIEM)
+	,FOREIGN KEY (MAPHG) REFERENCES PHONGBAN(MAPHG)
+	);
+
+CREATE TABLE THANNHAN
+(
+	MA_NVIEN	varchar(9)
+	,TENTN		varchar(20)
+	,NGSINH		smalldatetime
+	,PHAI		varchar(3)
+	,QUANHE		varchar(25)
+	,PRIMARY KEY(MA_NVIEN, TENTN)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE PHANCONG
+(
+	MA_NVIEN	varchar(9)
+	,SODA		varchar(2)
+	,THOIGIAN	numeric(18,0)
+	,PRIMARY KEY(MA_NVIEN, SODA)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	,FOREIGN KEY (SODA) REFERENCES DEAN(MADA)
+	);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(MA_NQL) REFERENCES NHANVIEN(MANV);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(PHG) REFERENCES PHONGBAN(MAPHG);
+
+
+
+INSERT INTO NHANVIEN(MANV,HONV,TENLOT,TENNV,NGSINH,DCHI,PHAI,LUONG,MA_NQL,PHG)
+VALUES ('01',N'Phùng',N'Nhất',N'Bình','2003-07-25',N'Phú Yên','Nam','100000000','01','P1'),
+	('02',N'Đỗ',N'Lương',N'Tài','2001-05-10',N'Nha Trang','Nam','50000000','01','P1'),
+	('03',N'Đan',N'Bảo',N'Trúc','2000-11-13',N'Nha Trang',N'Nữ','20000000','01',N'P1'),
+	('04',N'Mục',N'Tuấn',N'Châu','2002-07-21',N'Phú Yên','Nam','20000000','01','P1'),
+	('05',N'Tuấn',N'Thăng',N'Long','2000-03-15',N'Hà Nội','Nam','80000000','05','P2'),
+	('06',N'Châu',N'Giáng',N'Tiên','2000-04-17',N'Hải Phòng',N'Nữ','10000000','05','P2'),
+	('07',N'Điêu',N'Kiều',N'Diễm','1990-01-11',N'Khánh Hòa',N'Nữ','8000000','05','P2'),
+	('08',N'Ninh',N'Tùng',N'Anh','2000-04-22',N'Phú Yên','Nam','70000000','08','P3'),
+	('09',N'Ung',N'Yên',N'Bình','1995-11-25',N'Hồ Chí Minh','Nam','8000000','08','P3'),
+	('10',N'Ấu',N'Minh',N'Dân','1997-07-01',N'Hồ Chí Minh','Nam','8000000','08','P3');
+	   
+
+INSERT INTO PHONGBAN(MAPHG,TENPHG,TRPHG,NG_NHANCHUC)
+VALUES ('P1',N'Lao động','02','2020-04-15'),
+	('P2',N'Phát triển','06','2020-03-25'),
+	('P3',N'Tuyên truyền','09','2015-11-23');
+	   
+
+INSERT INTO DEAN(MADA,TENDA,DDIEM_DA,PHONG)
+VALUES ('A1',N'Xây chung cư cao cấp',N'Hồ Chí Minh','P1'),
+	('A2',N'Dự án game',N'Nha Trang','P2'),
+	('A3',N'Tuyên truyền, quảng cáo',N'Hồ Chí Minh','P3');
+
+INSERT INTO DIADIEM_PHG(DIADIEM)
+VALUES ('P1',N'HTS, Hồ Chí Minh'),
+		('P2',N'GameNHM, Nha Trang'),
+		('P3',N'Phòng tuyên truyền, Hồ Chí Minh');
+
+INSERT INTO THANNHAN(MA_NVIEN,TENTN,NGSINH,PHAI,QUANHE)
+VALUES	('01',N'Linh','1980-03-22','Nam','Ba'),
+	('01',N'Hoàn','1981-05-17',N'Nữ',N'Mẹ'),
+	('02',N'Yến','1972-02-11',N'Nữ',N'Mẹ'),
+	('03',N'Phú','1975-05-22',N'Nam',N'Ba'),
+	('04',N'Tùng','1980-09-12','Nam','Ba'),
+	('04',N'Hương','1977-08-10',N'Nữ','Mẹ'),
+	('05',N'Minh','1990-02-20',N'Nam','Ba'),
+	('06',N'Hoa','2003-09-03',N'Nữ',N'Em gái'),
+	('07',N'Hiếu','2001-06-15',N'Nam',N'Anh trai'),
+	('08',N'Huy','2003-06-12',N'Nam',N'Em trai'),
+	('09',N'Như','2000-12-25',N'Nữ',N'Em gái'),
+	('10',N'My','1990-04-03',N'Nữ',N'Chị gái');
+
+INSERT INTO PHANCONG(MA_NVIEN,SODA,THOIGIAN)
+VALUES	('01','A1','1300'),
+	('02','A1','0960'),
+	('03','A1','1350'),
+	('04','A1','1300'),
+	('05','A2','0960'),
+	('06','A2','1350'),
+	('07','A2','0730'),
+	('08','A3','0730'),
+	('09','A3','0730'),
+	('10','A3','1300');
+
+update DEAN
+set DDIEM_DA = N'Hồ Chí Minh'
+where MADA = 'A3';
+
+
+select * from DEAN;
+/*Bai so  1*/
+Select * 
+from NHANVIEN
+where PHG = '5';
+/*Bai so  2*/
+select *
+from NHANVIEN
+where LUONG > 25000;
+/*Bai so  3*/
+select *
+from NHANVIEN
+where (LUONG > 65000 and PHG = 2) or (LUONG >70000 and PHG = 6);
+/*Bai so  4*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where DCHI like N'Hồ Chí Minh';
+/*Bai so  5*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where TENNV like N'N%';
+/*Bai so  6*/
+select NGSINH, DCHI
+from NHANVIEN
+where HONV + ' ' + TENLOT + ' ' + TENNV like 'Lê Minh Tính';
+/*Bai so  7*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU]
+from NHANVIEN
+where year(NGSINH) between 1955 and 1975;
+/*Bai so  8*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], YEAR(NGSINH) as N'Năm'
+from NHANVIEN;
+/*Bai so  9*/
+select HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], DATEDIFF(YEAR, NGSINH, GETDATE()) as N'Tuổi'
+from NHANVIEN;
+/*Bai so  10*/
+select TENPHG, DIADIEM
+from PHONGBAN join DIADIEM_PHG
+	on PHONGBAN.MAPHG = DIADIEM_PHG.MAPHG;
+/*Bai so  11*/
+select TENNV as N'Tên Trưởng Phòng', TENPHG as N'Tên Phòng Ban'
+from NHANVIEN join PHONGBAN on NHANVIEN.MANV = PHONGBAN.TRPHG;
+/*Bai so  12*/
+select TENNV, DCHI
+from NHANVIEN join PHONGBAN on NHANVIEN.PHG = PHONGBAN.MAPHG
+where TENPHG = N'Kỹ thuật';
+/*Bai so  13*/
+select TENDA, TENPHG, HONV + ' ' + TENLOT + ' ' + TENNV as [TEN DAY DU], NG_NHANCHUC
+from (DEAN join PHONGBAN on DEAN.PHONG = PHONGBAN.MAPHG) inner join NHANVIEN on PHONGBAN.TRPHG = NHANVIEN.MANV
+/*Bai so  14*/
+select TENNV, TENTN
+from NHANVIEN join THANNHAN on NHANVIEN.MANV = THANNHAN.MA_NVIEN
+where NHANVIEN.PHAI = N'Nữ'
+/*Bai so  15*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv', ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí'
+from NHANVIEN nv, NHANVIEN ql
+where nv.MANV = ql.MA_NQL
+/*Bai so 16*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv',ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí',
+tp.HONV+ ' ' +tp.TENLOT+ ' ' +tp.TENNV as 'Họ Và Tên Trưởng Phòng'
+from NHANVIEN nv,NHANVIEN ql,NHANVIEN tp , PHONGBAN pb
+where nv.MA_NQL=ql.MANV and tp.MANV= pb.TRPHG and pb.MAPHG=nv.PHG
+/*Bai so 17*/
+select nv.HONV+ ' ' +nv.TENLOT+ ' ' +nv.TENNV as 'Họ Và Tên nv', ql.HONV+ ' ' +ql.TENLOT+ ' ' +ql.TENNV as 'Họ Và Tên Quản Lí'
+from NHANVIEN nv, NHANVIEN ql, DEAN da
+where nv.MA_NQL = ql.MANV and da.PHONG = nv.PHG and nv.PHG = 5 and da.TENDA like N'Xây dựng nhà máy chếbiến thủy sản';
+/*Bai so 42*/
+select tp.HONV+ ' ' +tp.TENLOT+ ' ' +tp.TENNV as 'Họ Và Tên tp', pb.TENPHG
+from NHANVIEN tp join PHONGBAN pb on tp.MANV = pb.TRPHG
+where pb.MAPHG = (
+	select top 1 p.MAPHG
+	from PHONGBAN p join NHANVIEN nv on p.MAPHG = nv.PHG
+	group by p.MAPHG
+	order by count(nv.MANV)desc);
+
+select HONV,TENNV,count(*)
+	from NHANVIEN,THANNHAN
+	where MANV= MA_NVIEN
+	group by HONV,TENNV
+
+begin
+	declare @contro cursor;
+	set @contro = cursor for
+		select HONV + ' ' + TENLOT + ' ' + TENNV
+		from NHANVIEN
+		where DCHI like N'Hồ Chí Minh';
+		open @contro;
+		declare @hoten nvarchar(50);
+		declare @i int = 0;
+		fetch next from @contro into @hoten;
+		while(@@FETCH_STATUS = 0)
+			begin
+				set @i = @i + 1;
+				print convert(varchar(4), @i) + '.' + @hoten;
+			end;
+		close @contro;
+		deallocate @contro;
+end;
+
+
+
+---------------------------------------------------------------------------------------------
+Create database QuanLyDeAn_DamVietTrong
+use QuanLyDeAn_DamVietTrong
+
+CREATE TABLE NHANVIEN
+	(
+	 MANV		varchar(9) PRIMARY KEY
+	 ,HONV		nvarchar(15)
+	 ,TENLOT	nvarchar(30)
+	 ,TENNV		nvarchar(30)
+	 ,NGSINH	smalldatetime
+	 ,DCHI		nvarchar(150)
+	 ,PHAI		nvarchar(3)
+	 ,LUONG		numeric(18,0)
+	 ,MA_NQL	varchar(9)
+	 ,PHG		varchar(2)
+	 );
+
+CREATE TABLE DEAN
+(
+	MADA	varchar(2)	PRIMARY KEY
+	,TENDA	nvarchar(50)
+	,DDIEM_DA	nvarchar(20)
+	,PHONG	varchar(2)
+	);
+
+CREATE TABLE PHONGBAN
+(
+	MAPHG	varchar(2)	PRIMARY KEY
+	,TENPHG	nvarchar(20)
+	,TRPHG	varchar(9)
+	,NG_NHANCHUC	smalldatetime
+	,FOREIGN KEY (TRPHG) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE DIADIEM_PHG
+(
+	MAPHG	varchar(2)
+	,DIADIEM	nvarchar(20)
+	,PRIMARY KEY(MAPHG, DIADIEM)
+	,FOREIGN KEY (MAPHG) REFERENCES PHONGBAN(MAPHG)
+	);
+
+CREATE TABLE THANNHAN
+(
+	MA_NVIEN	varchar(9)
+	,TENTN		nvarchar(20)
+	,NGSINH		smalldatetime
+	,PHAI		nvarchar(3)
+	,QUANHE		nvarchar(25)
+	,PRIMARY KEY(MA_NVIEN, TENTN)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	);
+
+CREATE TABLE PHANCONG
+(
+	MA_NVIEN	varchar(9)
+	,SODA		varchar(2)
+	,THOIGIAN	numeric(18,0)
+	,PRIMARY KEY(MA_NVIEN, SODA)
+	,FOREIGN KEY (MA_NVIEN) REFERENCES NHANVIEN(MANV)
+	,FOREIGN KEY (SODA) REFERENCES DEAN(MADA)
+	);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(MA_NQL) REFERENCES NHANVIEN(MANV);
+
+ALTER TABLE NHANVIEN
+	ADD FOREIGN KEY(PHG) REFERENCES PHONGBAN(MAPHG);
+
+INSERT INTO DEAN(MADA,TENDA,DDIEM_DA,PHONG)
+VALUES('A1',N'Xây chung cư',N'Nha Trang','P1'),
+('A2',N'Thiết kế chung cư',N'Nha Trang','P2'),
+('A3',N'Thu mua vật liệu xây',N'Nha Trang','P3'),
+('A4',N'Quảng cáo chung cư',N'Hồ Chí Minh','P4'),
+('A5',N'Sản xuất vật liệu xây',N'Hồ Chí Minh','P5'),
+('A6',N'Tuyển bảo an xây dựng',N'Hà Nội','P6'),
+('A7',N'Tuyển nhân công xây dựng',N'Hà Nội','P7'),
+('A8',N'Tuyển nhân công đọc',N'Hà Nội','P8'),
+('A9',N'Tuyển nhân công đào móng',N'Hà Nội','P9'),
+('B1',N'Tuyển nhân công trộn',N'Hà Nội','PA'),
+('B2',N'Tuyển nhân công hàn',N'Hà Nội','PB'),
+('B3',N'Tuyển nhân công sơn',N'Hà Nội','PC'),
+('B4',N'Tuyển nhân công đắp',N'Hà Nội','PD'),
+('B5',N'Tuyển nhân công động',N'Hà Nội','PE'),
+('B6',N'Khảo sát',N'Hà Nội','PF'),
+('B7',N'Thuyết phục',N'Hà Nội','PG'),
+('B8',N'Tuyển nhân viên căntin',N'Hà Nội','PH'),
+('B9',N'Coca',N'Hà Nội','PI'),
+('C1',N'Pepsi',N'Hà Nội','PK'),
+('C2',N'Mirinda',N'Hà Nội','PL');
+
+INSERT INTO NHANVIEN(MANV,HONV,TENLOT,TENNV,NGSINH,DCHI,PHAI,LUONG,MA_NQL)
+VALUES('01',N'Phùng',N'Nhất',N'Bình','1980-07-25',N'Nha Trang','Nam','500000000','01'),
+('02',N'Đỗ',N'Lương',N'Tài','2001-05-10',N'Nha Trang','Nam','100000000','01'),
+('03',N'Đan',N'Bảo',N'Trúc','2000-11-13',N'Nha Trang',N'Nữ','50000000','01'),
+('04',N'Mục',N'Tuấn',N'Châu','2002-07-21',N'Phú Yên','Nam','100000000','01'),
+('05',N'Tuấn',N'Thăng',N'Long','2000-03-15',N'Phú Yên','Nam','50000000','01'),
+('06',N'Châu',N'Giáng',N'Tiên','2000-04-17',N'Phú Yên',N'Nữ','50000000','01'),
+('07',N'Điêu',N'Kiều',N'Diễm','1990-01-11',N'Nha Trang',N'Nữ','100000000','01'),
+('08',N'Ninh',N'Tùng',N'Anh','2000-04-22',N'Nha Trang','Nam','50000000','01'),
+('09',N'Ung',N'Yên',N'Bình','1995-11-25',N'Nha Trang','Nam','50000000','01'),
+('10',N'Ấu',N'Minh',N'Dân','1982-07-01',N'Hồ Chí Minh','Nam','500000000','10'),
+('11',N'Lương',N'Hoàng',N'Anh','1980-03-11',N'Hồ Chí Minh',N'Nữ','100000000','10'),
+('12',N'Phan',N'Nguyệt',N'Ánh','2000-01-12',N'Hồ Chí Minh',N'Nữ','80000000','10'),
+('13',N'Lê',N'Hữu',N'Đạt','2003-11-25',N'Hồ Chí Minh','Nam','100000000','10'),
+('14',N'Võ',N'Huy',N'Hùng','1995-11-11',N'Hồ Chí Minh','Nam','80000000','10'),
+('15',N'Mai',N'Hoàng',N'Khương','1990-03-22',N'Hồ Chí Minh','Nam','80000000','10'),
+('16',N'Cao',N'Hoài',N'Nam','1992-01-11',N'Hà Nội','Nam','500000000','16'),
+('17',N'Trần',N'Thanh',N'Thân','2000-10-11',N'Hà Nội',N'Nữ','100000000','16'),
+('18',N'Bùi',N'Hữu',N'Thắng','2001-05-22',N'Hà Nội','Nam','20000000','16'),
+('19',N'Nguyễn',N'Nhất',N'Tâm','1998-11-24',N'Hà Nội','Nam','100000000','16'),
+('20',N'Huỳnh',N'Tấn',N'Đạt','1999-03-02',N'Hà Nội','Nam','20000000','16'),
+('21',N'Nguyễn',N'Hoàng',N'Việt','2003-02-15',N'Hà Nội','Nam','20000000','16');
+
+INSERT INTO PHANCONG(MA_NVIEN,SODA,THOIGIAN)
+VALUES('01','A1','2160'),
+('02','A1','2160'),
+('03','A1','2160'),
+('04','A2','50'),
+('05','A2','50'),
+('06','A2','50'),
+('07','A3','1000'),
+('08','A3','1000'),
+('09','A3','1000'),
+('10','A4','1900'),
+('11','A4','1900'),
+('12','A4','1900'),
+('13','A5','2200'),
+('14','A5','2200'),
+('15','A5','2200'),
+('16','A6','168'),
+('17','A6','168'),
+('18','A6','168'),
+('19','A7','100'),
+('20','A7','100'),
+('21','A7','10');
+
+INSERT INTO THANNHAN(MA_NVIEN,TENTN,NGSINH,PHAI,QUANHE)
+VALUES('01',N'Linh','1980-03-22','Nam','Ba'),
+('01',N'Hoàn','1981-05-17',N'Nữ',N'Mẹ'),
+('02',N'Yến','1972-02-11',N'Nữ',N'Mẹ'),
+('03',N'Phú','1975-05-22',N'Nam',N'Ba'),
+('04',N'Tùng','1980-09-12','Nam','Ba'),
+('04',N'Hương','1977-08-10',N'Nữ','Mẹ'),
+('05',N'Minh','1990-02-20',N'Nam','Ba'),
+('06',N'Hoa','2003-09-03',N'Nữ',N'Em gái'),
+('07',N'Hiếu','2001-06-15',N'Nam',N'Anh trai'),
+('08',N'Huy','2003-06-12',N'Nam',N'Em trai'),
+('09',N'Như','2000-12-25',N'Nữ',N'Em gái'),
+('10',N'Mỹ','1972-09-07',N'Nữ',N'Mẹ'),
+('11',N'My','1990-04-03',N'Nữ',N'Chị gái'),
+('12',N'Hùng','1969-11-05',N'Nam',N'Ba'),
+('13',N'Nguyễn','1974-09-11',N'Nam',N'Ba'),
+('14',N'Bảo','1977-06-15',N'Nữ',N'Mẹ'),
+('15',N'Hải','1982-09-22',N'Nam',N'Ba'),
+('16',N'Hoan','1971-10-14',N'Nữ',N'Mẹ'),
+('17',N'Nga','1970-06-01',N'Nữ',N'Mẹ'),
+('18',N'Quốc','1968-04-03',N'Nam',N'Ba'),
+('19',N'Trường','1970-12-11',N'Nam',N'Ba'),
+('20',N'Thảo','1979-01-15',N'Nữ',N'Mẹ'),
+('21',N'Tâm','1975-05-11',N'Nữ',N'Mẹ');
+
+INSERT INTO PHONGBAN(MAPHG, TENPHG, TRPHG, NG_NHANCHUC)
+VALUES('P1',N'Xây dựng','02','2020-04-15'),
+('P2',N'Thiết kế','04','2020-03-25'),
+('P3',N'Thu mua vật liệu','07','2020-11-23'),
+('P4',N'Tuyên truyền','11','2022-06-23'),
+('P5',N'Sản xuất','13','2022-06-23'),
+('P6',N'Bảo an','17','2019-10-11'),
+('P7',N'Nhân sự','19','2019-11-23'),
+('P8',N'Phòng 8','19','2019-11-23'),
+('P9',N'Phòng 9','19','2019-11-23'),
+('PA',N'Phòng 10','19','2019-11-23'),
+('PB',N'Phòng 11','19','2019-11-23'),
+('PC',N'Phòng 12','19','2019-11-23'),
+('PD',N'Phòng 13','19','2019-11-23'),
+('PE',N'Phòng 14','19','2019-11-23'),
+('PF',N'Phòng 15','19','2019-11-23'),
+('PG',N'Phòng 16','19','2019-11-23'),
+('PH',N'Phòng 17','19','2019-11-23'),
+('PI',N'Phòng 18','19','2019-11-23'),
+('PK',N'Phòng 19','19','2019-11-23'),
+('PL',N'Phòng 20','19','2019-11-23');
+
+INSERT INTO DIADIEM_PHG(MAPHG,DIADIEM)
+VALUES('P1',N'Nha Trang'),
+('P2',N'Phú Yên'),
+('P3',N'Nha Trang'),
+('P4',N'Hồ Chí Minh'),
+('P5',N'Hồ Chí Minh'),
+('P6',N'Hà Nội'),
+('P7',N'Hà Nội'),
+('P8',N'CS1, Hà Nội'),
+('P9',N'CS1, Hà Nội'),
+('PA',N'CS2, Hà Nội'),
+('PB',N'CS2, Hà Nội'),
+('PC',N'CS2, Hà Nội'),
+('PD',N'CS2, Hà Nội'),
+('PE',N'CS2, Hà Nội'),
+('PF',N'CS2, Hà Nội'),
+('PG',N'CS2, Hà Nội'),
+('PH',N'CS2, Hà Nội'),
+('PI',N'CS2, Hà Nội'),
+('PK',N'CS2, Hà Nội'),
+('PL',N'CS2, Hà Nội');
+
+update NHANVIEN
+set PHG = 'P7'
+where MANV = '21';
+
+select * from NHANVIEN
+select * from DEAN
+select * from PHONGBAN
+select * from DIADIEM_PHG
+select * from THANNHAN
+select * from PHANCONG
